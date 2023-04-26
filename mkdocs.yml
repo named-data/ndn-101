@@ -4,8 +4,8 @@ repo_url: https://github.com/pulsejet/ndn101-md
 theme:
   name: material
   icon:
-    logo: material/web
-  favicon: ndn.png
+    logo: material/network
+  favicon: img/ndn.png
   palette:
     primary: deep orange
   features:
