@@ -1,8 +1,11 @@
 site_name: NDN 101
 theme:
   name: material
+  icon:
+    logo: material/web
+  favicon: /ndn.png
   palette:
-    primary: pink
+    primary: deep orange
   features:
   - content.tabs.link
   - navigation.footer
