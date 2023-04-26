@@ -81,7 +81,7 @@ The next page will describe how to use the libraries to send and receive the pac
         ndn::Data data(name);
 
         // Set the Data packet's content to "Hello, NDN!"
-        data.setContent(ndn::make_span(reinterpret_cast<const uint8_t*>("Hello, NDN!"), 13));
+        data.setContent(ndn::make_span(reinterpret_cast<const uint8_t*>("Hello, NDN!"), 11));
     }
     ```
 
