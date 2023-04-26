@@ -21,7 +21,10 @@ nav:
   - 'communication.md'
   - 'multicast.md'
   - 'security.md'
+  - 'sync.md'
+  - 'routing.md'
   - 'testbed.md'
+  - 'debugging.md'
 
 markdown_extensions:
   - admonition
