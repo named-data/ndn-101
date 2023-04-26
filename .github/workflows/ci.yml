@@ -17,5 +17,5 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
-      - run: pip install mkdocs-material mkdocs-bibtex
+      - run: pip install mkdocs-material mkdocs-bibtex pypandoc-binary
       - run: mkdocs gh-deploy --force

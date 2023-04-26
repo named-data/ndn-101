@@ -19,6 +19,7 @@ plugins:
   - bibtex:
       bib_file: ndn.bib
       bib_by_default: true
+      csl_file: acm-sig-proceedings.csl
 
 nav:
   - 'index.md'
