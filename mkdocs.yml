@@ -12,6 +12,7 @@ theme:
   - content.tabs.link
   - navigation.footer
   - navigation.instant
+  - content.code.copy
 
 nav:
   - 'index.md'
@@ -25,6 +26,7 @@ nav:
 markdown_extensions:
   - admonition
   - footnotes
+  - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
       - name: mermaid

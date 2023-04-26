@@ -64,67 +64,17 @@ The next page will describe how to use the libraries to send and receive the pac
 === "ndn-cxx"
 
     ``` c++
-    #include <ndn-cxx/face.hpp>
-
-    int main(int argc, char** argv)
-    {
-        // Create an NDN Name from a URI string
-        ndn::Name name("/edu/ucla/cs/118/notes");
-
-        // Create an Interest packet with this name
-        ndn::Interest interest(name);
-
-        // Set the Interest packet's InterestLifetime to 5 seconds
-        interest.setInterestLifetime(ndn::time::seconds(5));
-
-        // Create a Data packet with the same name
-        ndn::Data data(name);
-
-        // Set the Data packet's content to "Hello, NDN!"
-        data.setContent(ndn::make_span(reinterpret_cast<const uint8_t*>("Hello, NDN!"), 11));
-    }
+    --8<-- "snippets/packets/packets.cpp"
     ```
 
 === "python-ndn"
 
     ``` python
-    from ndn.encoding import Name
-    from ndn.types import Interest, Data
-
-    # Create an NDN name from a URI string
-    name = Name.from_str('/edu/ucla/cs/118/notes')
-
-    # Create an Interest packet with this name
-    interest = Interest(name)
-
-    # Set the Interest packet's InterestLifetime to 5 seconds
-    interest.interest_lifetime = 5000
-
-    # Create a Data packet with the same name
-    data = Data(name)
-
-    # Set the Data packet's content to "Hello, NDN!"
-    data.content = b'Hello, NDN!'
+    --8<-- "snippets/packets/packets.py"
     ```
 
 === "NDNts"
 
     ``` typescript
-    import { Name, Interest, Data } from '@ndn/packet';
-    import { toUtf8 } from '@ndn/util';
-
-    // Create an NDN name from a URI string
-    const name = new Name('/edu/ucla/cs/118/notes');
-
-    // Create an Interest packet with this name
-    const interest = new Interest(name);
-
-    // Set the Interest packet's InterestLifetime to 5 seconds
-    interest.lifetime = 5000;
-
-    // Create a Data packet with the same name
-    const data = new Data(name);
-
-    // Set the Data packet's content to "Hello, NDN!"
-    data.content = toUtf8('Hello, NDN!');
+    --8<-- "snippets/packets/packets.ts"
     ```
