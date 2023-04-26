@@ -134,6 +134,7 @@ To serve data to other applications, a producer must register a name prefix with
   1. Any Interest packets matching the prefix may now be forwarded to the producer.
 
 The following snippet illustrates how to serve data by registering a name prefix route at the local forwarder.
+Make sure to start NFD on your development machine before running this example.
 
 === "ndn-cxx"
 
