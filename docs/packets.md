@@ -38,17 +38,7 @@ Each field in the packet is encoded as a TLV element, which consists of a **type
 
 The following example illustrates the TLV encoding of the Interest and Data packets shown above. The type of the block is specified first (in red, hover for numeric), followed by the length (in blue) and the value.
 
-<div>
-    <iframe
-        src="https://play.ndn.today/?visualize=0527071b0803656475080475636c6108026373080331313808056e6f7465730a048ddbcef10c021388"
-        crossorigin="anonymous" data-message-fun="handleVisMessage" style="border: none; width: 100%; margin-bottom: 10px">
-    </iframe>
-    <iframe
-        src="https://play.ndn.today/?visualize=06A2071B0803656475080475636C6108026373080331313808056E6F746573150B48656C6C6F2C204E444E21162C1B01031C2707250803656475080475636C610802637308056C6978696108034B455938080005FA3ADE0C75D817483046022100E773B365BE4FCED756073E9183A46258206F1624BC04B55ABE41CA4E259FBCF3022100D8F5CDCF0C946D71142708AABDC18819B4E9C6990DEC90AE0306E1A7E7D663C6"
-        crossorigin="anonymous" data-message-fun="handleVisMessage" style="border: none; width: 100%">
-    </iframe>
-
-</div>
+--8<-- "visuals/packets.html"
 
 !!! tip "Encoding of Names"
     NDN names are hierarchical and are encoded as a list of components. Each component is treated as an opaque binary value by the network, and may contain any sequence of bytes with no restrictions. For readability, names may be represented using the [NDN URI Scheme](https://docs.named-data.net/NDN-packet-spec/current/name.html#ndn-uri-scheme) using slashes as delimiters between components.
