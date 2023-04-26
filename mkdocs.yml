@@ -18,6 +18,9 @@ nav:
   - 'getting-started.md'
   - 'packets.md'
   - 'communication.md'
+  - 'multicast.md'
+  - 'security.md'
+  - 'testbed.md'
 
 markdown_extensions:
   - admonition
