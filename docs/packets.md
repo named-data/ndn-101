@@ -32,7 +32,7 @@ classDiagram
 
 ## TLV Encoding
 
-On the wire, NDN packets are represented using the Type-Length-Value ([NDN TLV](https://docs.named-data.net/NDN-packet-spec/current/tlv.html#ndn-tlv-encoding)) encoding scheme. TLV is a highly efficient binary encoding scheme that supports variable length fields and nested structures.
+On the wire, NDN packets are represented using the Type-Length-Value ([NDN TLV](https://docs.named-data.net/NDN-packet-spec/current/tlv.html#ndn-tlv-encoding)[@icn2022tlv]) encoding scheme. TLV is a highly efficient binary encoding scheme that supports variable length fields and nested structures.
 
 Each field in the packet is encoded as a TLV element, which consists of a **type**, **length**, and **value**. The type and length fields are encoded as variable length integers, and the value field is encoded as a sequence of bytes (which in turn may be another TLV block). Interest and Data packets themselves are also encoded as TLV elements.
 

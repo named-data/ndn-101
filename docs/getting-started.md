@@ -7,10 +7,10 @@ This page will guide you through the process of installing the basic tools neede
 To begin, you will need to first install the **NDN Forwarding Daemon (NFD)** on your computer.
 There are several implementations of NFD, the most popular of which are:
 
-  * [NFD](https://docs.named-data.net/NFD/current/INSTALL.html), the reference implementation (C++)
-  * [YaNFD](https://github.com/named-data/yanfd), a multithreaded implementation (Golang)
-  * [NDN-DPDK](https://github.com/usnistgov/ndn-dpdk), a high-performance implementation (C)
-  * [NDN-Lite](https://github.com/named-data-iot/ndn-lite), an IoT implementation (C)
+  * [NFD](https://docs.named-data.net/NFD/current/INSTALL.html)[@afanasyev2014nfd], the reference implementation (C++)
+  * [YaNFD](https://github.com/named-data/yanfd)[@icn2021yanfd], a multithreaded implementation (Golang)
+  * [NDN-DPDK](https://github.com/usnistgov/ndn-dpdk)[@icn2020dpdk], a high-performance implementation (C)
+  * [NDN-Lite](https://github.com/named-data-iot/ndn-lite)[@icn2018ndnot], an IoT implementation (C)
 
 !!! tip "What is the role of NFD?"
     NFD is the NDN equivalent of an IP "router", and runs on _each node_ in the network.
