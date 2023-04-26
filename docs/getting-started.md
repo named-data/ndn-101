@@ -31,3 +31,7 @@ Depending on the library, you will need the corresponding compilers / interprete
 
 Once you have installed NFD and a client library, you need to start NFD on your local development machine.
 You are now ready to start developing NDN applications!
+
+!!! info "Contributing to the NDN codebase"
+
+    The NDN codebase is free and open-source software, and most of it is available on [GitHub](https://github.com/named-data). If you are interested in contributing, make sure you read [this guide](https://github.com/named-data/.github/blob/main/CONTRIBUTING.md) and the [code of conduct](https://github.com/named-data/.github/blob/main/CODE_OF_CONDUCT.md) first.
