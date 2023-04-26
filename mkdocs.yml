@@ -1,4 +1,6 @@
 site_name: NDN 101
+repo_url: https://github.com/pulsejet/ndn101-md
+
 theme:
   name: material
   icon:
@@ -9,6 +11,7 @@ theme:
   features:
   - content.tabs.link
   - navigation.footer
+  - navigation.instant
 
 nav:
   - 'index.md'

@@ -9,8 +9,8 @@ NDN applications fetch data using Interest-Data packet exchanges. The process of
   1. The network the forwards this Data packet back to the requesting application.
 
 !!! info "Types of Applications"
-    Applications that send Interests to fetch data packets are called **"consumers"** <br>
-    Likewise, applications that serve Data in response to Interests are called **"producers"** <br>
+    Applications that send Interests to fetch data packets are called **"consumers"**.
+    Likewise, applications that serve Data in response to Interests are called **"producers"**.
     An application may act as both a consumer and a producer simultaneously.
 
 ## Data Consumer
