@@ -3,11 +3,15 @@ theme:
   name: material
   palette:
     primary: pink
+  features:
+  - content.tabs.link
+  - navigation.footer
 
 nav:
   - 'index.md'
   - 'getting-started.md'
   - 'packets.md'
+  - 'communication.md'
 
 markdown_extensions:
   - admonition
@@ -17,3 +21,5 @@ markdown_extensions:
       - name: mermaid
         class: mermaid
         format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
