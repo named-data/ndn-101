@@ -21,12 +21,12 @@ There are several implementations of NFD, the most popular of which are:
 Next, you will need to install a **client library** of your choice to interact with the NDN network.
 Depending on the library, you will need the corresponding compilers / interpreters / build tools.
 
-  * [ndn-cxx](https://github.com/named-data/ndn-cxx), reference implementation (C++)
-  * [python-ndn](https://github.com/named-data/python-ndn) (Python)
-  * [NDNts](https://github.com/yoursunny/NDNts) (TypeScript)
+  * [ndn-cxx](https://github.com/named-data/ndn-cxx) (C++) [[Docs](https://docs.named-data.net/ndn-cxx/current/INSTALL.html), [API](https://docs.named-data.net/ndn-cxx/current/doxygen/annotated.html)]
+  * [python-ndn](https://github.com/named-data/python-ndn) (Python) [[Docs](https://python-ndn.readthedocs.io/en/latest/)]
+  * [NDNts](https://github.com/yoursunny/NDNts) (TypeScript) [[Docs](https://yoursunny.com/p/NDNts/)]
   * [go-ndn](https://github.com/zjkmxy/go-ndn) (Golang)
-  * [NDN-Lite](https://github.com/named-data-iot/ndn-lite), an IoT implementation (C)
-  * [esp8266ndn](https://github.com/yoursunny/esp8266ndn) (Arduino)
+  * [NDN-Lite](https://github.com/named-data-iot/ndn-lite) (C, IoT) [[Docs](https://github.com/named-data-iot/ndn-lite/wiki), [API](https://zjkmxy.github.io/ndn-lite-docs/index.html)]
+  * [esp8266ndn](https://github.com/yoursunny/esp8266ndn) (Arduino) [[API](https://esp8266ndn.ndn.today/)]
 
 !!! tip "What does the client library do?"
 
