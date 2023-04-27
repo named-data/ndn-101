@@ -13,7 +13,7 @@ NDN applications fetch data using Interest-Data packet exchanges. The process of
     Likewise, applications that serve Data in response to Interests are called **"producers"**.
     An application may act as both a consumer and a producer simultaneously.
 
-## Data Consumer
+## Consumer
 
 Consumers are applications that send Interest packets to fetch data. The Interest packet contains the name of the data being requested along with any optional selectors. The following snippet illustrates how to send an Interest packet and get back the corresponding Data.
 
@@ -38,7 +38,7 @@ Consumers are applications that send Interest packets to fetch data. The Interes
     --8<-- "snippets/communication/consumer.ts"
     ```
 
-## Data Producer
+## Producer
 
 To serve data to other applications, a producer must register a name prefix with the network.
 
