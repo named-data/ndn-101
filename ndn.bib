@@ -59,7 +59,7 @@
   volume={29},
   pages={31},
   year={2014},
-  url={https://named-data.net/wp-content/uploads/2014/07/NFD-developer-guide.pdf}
+  url={https://named-data.net/publications/techreports/nfd-developer-guide/}
 }
 
 @inproceedings{icn2021yanfd,
@@ -132,4 +132,19 @@
 	keywords = {type-length-value format, encoding, information-centric networking, named data networking},
 	location = {Osaka, Japan},
 	series = {ICN '22}
+}
+
+@article{cc2013stateful,
+	title = {A case for stateful forwarding plane},
+	journal = {Computer Communications},
+	volume = {36},
+	number = {7},
+	pages = {779-791},
+	year = {2013},
+	issn = {0140-3664},
+	doi = {https://doi.org/10.1016/j.comcom.2013.01.005},
+	url = {https://www.sciencedirect.com/science/article/pii/S0140366413000236},
+	author = {Cheng Yi and Alexander Afanasyev and Ilya Moiseenko and Lan Wang and Beichuan Zhang and Lixia Zhang},
+	keywords = {NDN, Forwarding plane, Adaptive forwarding},
+	abstract = {In Named Data Networking (NDN), packets carry data names instead of source and destination addresses. This paradigm shift leads to a new network forwarding plane: data consumers send Interest packets to request desired data, routers forward Interest packets and maintain the state of all pending Interests, which is then used to guide Data packets back to the consumers. Maintaining the pending Interest state, together with the two-way Interest and Data exchange, enables NDN routers’ forwarding process to measure performance of different paths, quickly detect failures and retry alternative paths. In this paper we describe an initial design of NDN’s forwarding plane and evaluate its data delivery performance under adverse conditions. Our results show that this stateful forwarding plane can successfully circumvent prefix hijackers, avoid failed links, and utilize multiple paths to mitigate congestion. We also compare NDN’s performance with that of IP-based solutions to highlight the advantages of a stateful forwarding plane.}
 }
