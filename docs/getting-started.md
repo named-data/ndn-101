@@ -59,3 +59,12 @@ The [ndn-tools](https://github.com/named-data/ndn-tools) package is highly recom
     ndnpingserver /my/nfd/test &
     ndnping /my/nfd/test
     ```
+
+## Getting Help
+
+If you have any questions about NDN or the code base, we encourage you to reach out to the community for help.
+Some options include,
+
+  - Ask a question at the most appropriate [mailing list](https://named-data.net/codebase/platform/support/mailing-lists/).
+  - File an issue at the relevant [GitHub](https://github.com/named-data) repository or [Redmine](https://redmine.named-data.net/projects).
+  - (If applicable) reach out to the authors of the paper that introduced the software.
