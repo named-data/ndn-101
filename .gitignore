@@ -1,2 +1,3 @@
 /site/
 poetry.lock
+.prettierrc
