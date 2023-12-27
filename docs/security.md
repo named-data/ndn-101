@@ -47,7 +47,7 @@ Then, we have the following chain of signing:
 
 ``` mermaid
 flowchart LR
-    Admin -->|signs| Student -->|signs| Paper Changes
+    Admin -->|signs| Student -->|signs| paper[Paper Changes]
 ```
 
 All signatures start from the admin's certificate if we transitively follow the chain of signing.
