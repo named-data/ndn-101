@@ -17,5 +17,8 @@ jobs:
         with:
           key: ${{ github.ref }}
           path: .cache
+      - name: Upgrade pip
+        run: |
+          python -m pip install --upgrade pip setuptools
       - run: pip install mkdocs-material mkdocs-bibtex pypandoc-binary
       - run: mkdocs gh-deploy --force

@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "ndn101-md"
+version = "0.1.0"
+description = ""
+authors = ["Varun Patil <radialapps@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+mkdocs-material = "^9.5.3"
+mkdocs-bibtex = "^2.11.0"
+pypandoc-binary = "^1.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -32,6 +32,7 @@ nav:
   - 'routing.md'
   - 'testbed.md'
   - 'debugging.md'
+  - 'storage.md'
 
 markdown_extensions:
   - admonition
