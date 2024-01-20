@@ -11,7 +11,7 @@ Install dependencies:
 poetry install --no-root
 ```
 
-Build and preview:
+Live preview:
 ```bash
-poetry run mkdocs build && open site/index.html
+poetry run mkdocs serve
 ```
