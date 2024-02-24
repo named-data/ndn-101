@@ -2,7 +2,7 @@
 
 A introductory website for NDN.
 
-Link: https://varunpatil.me/ndn101-md/
+Link: [101.named-data.net](https://101.named-data.net/)
 
 ## Local build
 
