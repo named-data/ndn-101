@@ -1,5 +1,5 @@
 site_name: NDN 101
-repo_url: https://github.com/pulsejet/ndn101-md
+repo_url: https://github.com/named-data/ndn-101
 
 theme:
   name: material
