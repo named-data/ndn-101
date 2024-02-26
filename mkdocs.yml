@@ -25,7 +25,7 @@ nav:
   - 'getting-started.md'
   - 'packets.md'
   - 'communication.md'
-  - 'security.md'
+  - 'ndn-security.md'
   - 'sync.md'
   - 'storage.md'
   - 'forwarding.md'
