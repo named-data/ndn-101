@@ -7,11 +7,13 @@ Link: [101.named-data.net](https://101.named-data.net/)
 ## Local build
 
 Install dependencies:
-```bash
+
+```shell
 poetry install --no-root
 ```
 
 Live preview:
-```bash
+
+```shell
 poetry run mkdocs serve
 ```
