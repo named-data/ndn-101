@@ -13,7 +13,19 @@ Digital signing is done by a pair of asymmetric keys, which consists of a privat
 The _private key_ is known only by the producer, used to generate signatures.
 Anyone who knows the _public key_ can verify the signature.
 
-(Code snippet to be added)
+
+=== "python-ndn"
+
+    ``` python
+    --8<-- "snippets/security/key-gen.py"
+    ```
+
+=== "NDNts"
+
+    ``` typescript
+    --8<-- "snippets/security/key-gen.ts"
+    ```
+
 
 In a system, security is more than cryptographically verifying the signature.
 For example, we also need to
@@ -56,7 +68,17 @@ The entity (member or process) that owns the trust anchor has the power to contr
 Entities managing the trust relationship of the trust domain (including memberships and roles) are called _controllers_.
 The owner of the trust anchor is always a controller.
 
-(Code snippet to be added)
+=== "python-ndn"
+
+    ``` python
+    --8<-- "snippets/security/trust-domain.py"
+    ```
+
+=== "NDNts"
+
+    ``` typescript
+    --8<-- "snippets/security/trust-domain.ts"
+    ```
 
 An application may involve multiple trust domains. _Inter-domain trust relations_ will be established by the controller.
 In the case where pure peer-to-peer trust relation is established, every member is its own controller.

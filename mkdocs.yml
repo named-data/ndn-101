@@ -21,17 +21,17 @@ plugins:
       csl_file: acm-sig-proceedings.csl
 
 nav:
-  - "index.md"
-  - "getting-started.md"
-  - "packets.md"
-  - "communication.md"
-  - "security.md"
-  - "sync.md"
-  - "storage.md"
-  - "forwarding.md"
-  - "routing.md"
-  - "testbed.md"
-  - "debugging.md"
+  - 'index.md'
+  - 'getting-started.md'
+  - 'packets.md'
+  - 'communication.md'
+  - 'ndn-security.md'
+  - 'sync.md'
+  - 'storage.md'
+  - 'forwarding.md'
+  - 'routing.md'
+  - 'testbed.md'
+  - 'debugging.md'
 
 markdown_extensions:
   - admonition

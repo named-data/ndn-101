@@ -62,6 +62,12 @@ Make sure to start NFD on your development machine before running this example.
     --8<-- "snippets/communication/producer.py"
     ```
 
+=== "NDNts"
+
+    ``` typescript
+    --8<-- "snippets/communication/producer.ts"
+    ```
+
 ## Faces
 
 !!! warning "Under Construction"
