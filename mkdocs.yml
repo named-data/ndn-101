@@ -9,9 +9,9 @@ theme:
   palette:
     primary: deep orange
   features:
-  - content.tabs.link
-  - navigation.footer
-  - content.code.copy
+    - content.tabs.link
+    - navigation.footer
+    - content.code.copy
 
 plugins:
   - search
@@ -21,17 +21,17 @@ plugins:
       csl_file: acm-sig-proceedings.csl
 
 nav:
-  - 'index.md'
-  - 'getting-started.md'
-  - 'packets.md'
-  - 'communication.md'
-  - 'security.md'
-  - 'sync.md'
-  - 'storage.md'
-  - 'forwarding.md'
-  - 'routing.md'
-  - 'testbed.md'
-  - 'debugging.md'
+  - "index.md"
+  - "getting-started.md"
+  - "packets.md"
+  - "communication.md"
+  - "security.md"
+  - "sync.md"
+  - "storage.md"
+  - "forwarding.md"
+  - "routing.md"
+  - "testbed.md"
+  - "debugging.md"
 
 markdown_extensions:
   - admonition
@@ -39,9 +39,9 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.superfences:
       custom_fences:
-      - name: mermaid
-        class: mermaid
-        format: !!python/name:pymdownx.superfences.fence_code_format
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.tabbed:
       alternate_style: true
 
