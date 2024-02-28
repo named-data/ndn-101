@@ -19,7 +19,7 @@ console.log('Data:', toHex(wire));
 // Export public keys
 const publicKeyBits = verifier.spki!;
 console.log('Public Key bits:', toHex(publicKeyBits));
-// Importing a public key in NDNts is very complicated 
+// Importing a public key in NDNts is very complicated
 // so I recommend to use a certificate instead.
 // I will show you how to do it later.
 
