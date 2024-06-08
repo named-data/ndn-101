@@ -1,6 +1,6 @@
 import { Data, digestSigning } from '@ndn/packet';
 import { WsTransport } from '@ndn/ws-transport';
-import { Endpoint } from '@ndn/endpoint';
+import { produce } from '@ndn/endpoint';
 import { toUtf8 } from '@ndn/util';
 
 // Code running in the browser cannot connect to a local Unix socket.
@@ -9,11 +9,8 @@ import { toUtf8 } from '@ndn/util';
 const uplink = await WsTransport.createFace({}, "wss://suns.cs.ucla.edu/ws/");
 console.log(`Connected to NFD at ${uplink.remoteAddress}`);
 
-// Construct an Endpoint on the default forwarder instance.
-const endpoint = new Endpoint();
-
 // Start one producer
-const myProducer = endpoint.produce('/edu/ucla/cs/118/notes', async (interest) => {
+const myProducer = produce('/edu/ucla/cs/118/notes', async (interest) => {
     console.log(`Received Interest packet for ${interest.name.toString()}`);
     // Create the content bytes for the Data packet
     const content = toUtf8("Hello, NDN!");
