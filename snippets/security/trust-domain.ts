@@ -1,7 +1,7 @@
-import { Component, Data, Name } from '@ndn/packet';
+import { Component, Data, Name, ValidityPeriod } from '@ndn/packet';
 import { Encoder } from '@ndn/tlv';
 import { toHex, toUtf8 } from '@ndn/util';
-import { Certificate, Ed25519, generateSigningKey, ValidityPeriod } from '@ndn/keychain';
+import { Certificate, Ed25519, generateSigningKey } from '@ndn/keychain';
 
 // Generate trust anchor of admin
 const adminIdentityName = new Name('/lab/admin');
