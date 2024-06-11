@@ -1,0 +1,29 @@
+name: Deploy
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        id: py
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install poetry
+        run: pipx install --python '${{ steps.py.outputs.python-path }}' poetry
+      - name: Install dependencies
+        run: poetry install --no-interaction
+      - name: Deploy website
+        run: poetry run mkdocs --color gh-deploy --ignore-version --no-history

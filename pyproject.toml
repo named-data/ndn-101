@@ -1,9 +1,6 @@
 [tool.poetry]
-name = "ndn101-md"
-version = "0.1.0"
-description = ""
-authors = ["Varun Patil <radialapps@gmail.com>"]
-readme = "README.md"
+package-mode = false
+name = "ndn-101"
 
 [tool.poetry.dependencies]
 python = "^3.11"
