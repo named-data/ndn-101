@@ -1,6 +1,6 @@
 # NDN 101
 
-A introductory website for NDN.
+An introductory website on Named Data Networking (NDN).
 
 Link: [101.named-data.net](https://101.named-data.net/)
 
@@ -9,7 +9,8 @@ Link: [101.named-data.net](https://101.named-data.net/)
 Install dependencies:
 
 ```shell
-poetry install --no-root
+pipx install poetry
+poetry install
 ```
 
 Live preview:
