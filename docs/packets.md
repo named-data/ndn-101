@@ -27,9 +27,6 @@ classDiagram
 !!! tip "`CanBePrefix` Interest Selector"
     In this example, the name of the Interest and Data packets is an exact match. If the `CanBePrefix` selector is specified on the Interest, the name of a matching Data packet may be longer than the name of the Interest packet, as long as it has the name of the Interest as a prefix.
 
-!!! warning "Data Signing"
-    It is important to note that a Data packet is **required** to carry a signature to be considered valid.
-
 ## TLV Encoding
 
 On the wire, NDN packets are represented using the Type-Length-Value ([NDN TLV](https://docs.named-data.net/NDN-packet-spec/current/tlv.html#ndn-tlv-encoding)[@icn2022tlv]) encoding scheme. TLV is a highly efficient binary encoding scheme that supports variable length fields and nested structures.

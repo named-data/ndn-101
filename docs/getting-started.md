@@ -8,7 +8,7 @@ To begin, you will need to first install the **NDN Forwarding Daemon (NFD)** on 
 There are several implementations of NFD, the most popular of which are:
 
   * [NFD](https://docs.named-data.net/NFD/current/INSTALL.html)[@afanasyev2014nfd], the reference implementation (C++)
-  * [YaNFD](https://github.com/named-data/yanfd)[@icn2021yanfd], a multithreaded implementation (Golang)
+  * [NDNd](https://github.com/named-data/ndnd)[@icn2021yanfd], a multithreaded implementation (Golang)
   * [NDN-DPDK](https://github.com/usnistgov/ndn-dpdk)[@icn2020dpdk], a high-performance implementation (C)
   * [NDN-Lite](https://github.com/named-data-iot/ndn-lite)[@icn2018ndnot], an IoT implementation (C)
 
@@ -22,9 +22,9 @@ Next, you will need to install a **client library** of your choice to interact w
 Depending on the library, you will need the corresponding compilers / interpreters / build tools.
 
   * [ndn-cxx](https://github.com/named-data/ndn-cxx) (C++) [[Docs](https://docs.named-data.net/ndn-cxx/current/INSTALL.html), [API](https://docs.named-data.net/ndn-cxx/current/doxygen/annotated.html)]
+  * [NDNd](https://github.com/named-data/ndnd) (Golang) [[API](https://pkg.go.dev/github.com/named-data/ndnd)]
   * [python-ndn](https://github.com/named-data/python-ndn) (Python) [[Docs](https://python-ndn.readthedocs.io/en/latest/)]
   * [NDNts](https://github.com/yoursunny/NDNts) (TypeScript) [[Docs](https://yoursunny.com/p/NDNts/)]
-  * [go-ndn](https://github.com/zjkmxy/go-ndn) (Golang)
   * [NDN-Lite](https://github.com/named-data-iot/ndn-lite) (C, IoT) [[Docs](https://github.com/named-data-iot/ndn-lite/wiki), [API](https://zjkmxy.github.io/ndn-lite-docs/index.html)]
   * [esp8266ndn](https://github.com/yoursunny/esp8266ndn) (Arduino) [[API](https://esp8266ndn.ndn.today/)]
 
@@ -42,7 +42,7 @@ You are now ready to start developing NDN applications!
 
 ## Debugging Tools
 
-The [ndn-tools](https://github.com/named-data/ndn-tools) package is highly recommended and contains several tools for developing and debugging NDN applications.
+The [ndn-tools](https://github.com/named-data/ndn-tools) package is highly recommended and contains several tools for developing and debugging NDN applications. The [NDNd](https://github.com/named-data/ndnd) package also offers many of these tools with prebuilt binaries available.
 
   * [peek](https://github.com/named-data/ndn-tools/tree/master/tools/peek): transmit a single Interest/Data packet between a consumer and a producer.
   * [chunks](https://github.com/named-data/ndn-tools/tree/master/tools/chunks): segmented file transfer between a consumer and a producer.
