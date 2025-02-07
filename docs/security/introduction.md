@@ -9,4 +9,4 @@ Security is baked into the core of NDN, and is a fundamental part of the archite
 Each subsection below describes one aspect of the NDN security model.
 
 - [Trust Model](./trust-model.md) - How does NDN define data trustworthiness?
-- [Signatures](./signatures.md) - How is the trust model realized with digital signatures?
+- [Signatures](./signatures.md) - How is the trust model implemented with digital signatures?
