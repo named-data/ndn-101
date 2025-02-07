@@ -20,4 +20,4 @@ The design of NDN naturally leads to several advantages over IP and IP-based pro
 
  - **Multicast and Caching**: The stateful forwarding plane allows for aggregation of requests and responses, which enables efficient multicast of all Data packets. Since NDN packets are individually secured and do not rely on channel security, data is also securely cached at every forwarder in the network, creating a massive distributed cache.
 
-The NDN project also maintains a large open source code base, with NDN forwarders, debugging tools and libraries available in multiple languages including C++, Python, Go, TypeScript etc. Most of this code is available at the [GitHub](https://github.com/named-data).
+The NDN project also maintains a large open source code base, with NDN forwarders, debugging tools and libraries available in multiple languages including C++, Python, Go, TypeScript etc. Most of this code is available at [GitHub](https://github.com/named-data).

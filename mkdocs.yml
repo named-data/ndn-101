@@ -23,8 +23,10 @@ plugins:
 nav:
   - 'index.md'
   - 'getting-started.md'
-  - 'packets.md'
-  - 'communication.md'
+  - Connectivity:
+    - 'connectivity/packet-format.md'
+    - 'connectivity/building-networks.md'
+    - 'connectivity/applications.md'
   - 'ndn-security.md'
   - 'sync.md'
   - 'storage.md'

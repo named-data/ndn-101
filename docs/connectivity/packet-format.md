@@ -1,9 +1,9 @@
-# Packet Types
+# Packet Format
 
-At a high level, NDN defines two distinct types of packets:
+At a high level, NDN defines two distinct types of network packets.
 
-  * **Interest** packets are used to _request data_ from the network. The most important component of an Interest packet is the _name_ of the data being requested. An Interest may contain additional parameters such as a _lifetime_ or _hop limit_, which are referred to as selectors.
-  * **Data** packets carry the _actual data_ being requested, along with the name of the Data and a cryptographic signature. On receiving an Interest packet, nodes in the network may respond with a Data matching the name in the Interest.
+  - **Interest** packets are used to _request data_ from the network. The most important component of an Interest packet is the _name_ of the data being requested. An Interest may contain additional parameters such as a _lifetime_ or _hop limit_, which are referred to as selectors.
+  - **Data** packets carry the _actual data_ being requested, along with the name of the Data and a cryptographic signature. On receiving an Interest packet, nodes in the network may respond with a Data matching the name in the Interest.
 
 !!! tip "How are NDN packets used?"
     Interest and Data packets are used in a **request-response** fashion. An NDN application sends an Interest packet to request data from the network, and receives a single Data packet in response.

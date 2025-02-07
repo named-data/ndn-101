@@ -1,4 +1,4 @@
-# Communication
+# Applications
 
 NDN applications fetch data using Interest-Data packet exchanges. The process of such an exchange can be summarized as follows:
 
@@ -8,12 +8,21 @@ NDN applications fetch data using Interest-Data packet exchanges. The process of
   1. On receiving the Interest packet, a node may reply with a matching Data packet.
   1. The network the forwards this Data packet back to the requesting application.
 
+!!! tip "The pull-based data model"
+
+    Most applications today are based on the pull-based request-response data models, such as when using any HTTP-based protocol.
+    Search a data model is an inherent conflict with the TCP/IP host-centric architecture, which is designed to push data to endpoints.
+    NDN makes the pull based data centric model a first class citizen at the network layer.
+    It is important to keep this key difference in mind when building NDN applications.
+
 !!! info "Types of Applications"
+
     Applications that send Interests to fetch data packets are called **"consumers"**.
     Likewise, applications that serve Data in response to Interests are called **"producers"**.
     An application may act as both a consumer and a producer simultaneously.
 
-## Consumer
+
+## Consumers
 
 Consumers are applications that send Interest packets to fetch data. The Interest packet contains the name of the data being requested along with any optional selectors. The following snippet illustrates how to send an Interest packet and get back the corresponding Data.
 
@@ -38,7 +47,7 @@ Consumers are applications that send Interest packets to fetch data. The Interes
     --8<-- "snippets/communication/consumer.ts"
     ```
 
-## Producer
+## Producers
 
 To serve data to other applications, a producer must register a name prefix with the network.
 
@@ -68,6 +77,3 @@ Make sure to start NFD on your development machine before running this example.
     --8<-- "snippets/communication/producer.ts"
     ```
 
-## Faces
-
-!!! warning "Under Construction"

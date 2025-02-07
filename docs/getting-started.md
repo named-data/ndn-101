@@ -4,16 +4,16 @@ This page will guide you through the process of installing the basic tools neede
 
 ## Packet Forwarder
 
-To begin, you will need to first install the **NDN Forwarding Daemon (NFD)** on your computer.
-There are several implementations of NFD, the most popular of which are:
+To begin, you will need to first install an **NDN Packet Forwarder** on your computer.
+There are several implementations of forwarders, the most popular of which are:
 
   * [NFD](https://docs.named-data.net/NFD/current/INSTALL.html)[@afanasyev2014nfd], the reference implementation (C++)
   * [NDNd](https://github.com/named-data/ndnd)[@icn2021yanfd], a multithreaded implementation (Golang)
   * [NDN-DPDK](https://github.com/usnistgov/ndn-dpdk)[@icn2020dpdk], a high-performance implementation (C)
   * [NDN-Lite](https://github.com/named-data-iot/ndn-lite)[@icn2018ndnot], an IoT implementation (C)
 
-!!! tip "What is the role of NFD?"
-    NFD is the NDN equivalent of an IP "router", and runs on _each node_ in the network.
+!!! tip "What is the role of the forwarder?"
+    The forwarder is the NDN equivalent of an IP "router", and runs on _each node_ in the network.
     It is responsible for forwarding NDN packets between nodes, including functions of Data multicast and caching.
 
 ## Client Library
@@ -51,14 +51,23 @@ The [ndn-tools](https://github.com/named-data/ndn-tools) package is highly recom
   * [dissect](https://github.com/named-data/ndn-tools/tree/master/tools/dissect): inspect the TLV structure of an NDN packet
   * [dissect-wireshark](https://github.com/named-data/ndn-tools/tree/master/tools/dissect-wireshark): Wireshark extension to inspect the TLV structure of NDN packets
 
-!!! tip "Ping test for NFD"
+!!! tip "Ping test"
 
-    You can run a simple test for your local NFD by using thee ndn-tools package to start a ping server and client on the same machine. These will then communicate by connecting to NFD over a unix socket.
+    You can run a simple test for your local NDN forwarder by using the ndn-tools or NDNd packages to start a ping server and client on the same machine. These will then communicate by connecting to the forwarder over a unix socket.
 
-    ``` bash
-    ndnpingserver /my/nfd/test &
-    ndnping /my/nfd/test
-    ```
+    === "ndn-cxx"
+
+        ```bash
+        ndnpingserver /my/nfd/test &
+        ndnping /my/nfd/test
+        ```
+
+    === "NDNd"
+
+        ```bash
+        ndnd pingserver /my/ndnd/test &
+        ndnd ping /my/ndnd/test
+        ```
 
 ## Getting Help
 
