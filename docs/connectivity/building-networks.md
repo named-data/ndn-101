@@ -1,4 +1,8 @@
-# Building Networks
+---
+title: Building Networks
+---
+
+# Building NDN Networks
 
 Before running NDN applications, you may need to set up your own NDN network or connect to the existing global NDN testbed. This section describes the process of building your own network. A more detailed example for NDNd suitable for beginners can be found [here](https://github.com/named-data/ndnd/blob/main/docs/daemon-example.md).
 

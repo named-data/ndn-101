@@ -1,4 +1,8 @@
-# Packet Format
+---
+title: Packet Format
+---
+
+# NDN Packet Format
 
 At a high level, NDN defines two distinct types of network packets.
 

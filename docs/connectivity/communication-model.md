@@ -1,6 +1,10 @@
-# Applications
+---
+title: Communication Model
+---
 
-NDN applications fetch data using Interest-Data packet exchanges. The process of such an exchange can be summarized as follows:
+# NDN Communication Model
+
+NDN applications communicate using Interest-Data packet exchanges. The process of such an exchange can be summarized as follows.
 
   1. An application that desires a piece of data sends an Interest packet.
      The Interest packet contains the name of the data being requested.

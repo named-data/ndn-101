@@ -26,8 +26,11 @@ nav:
   - Connectivity:
     - 'connectivity/packet-format.md'
     - 'connectivity/building-networks.md'
-    - 'connectivity/applications.md'
-  - 'ndn-security.md'
+    - 'connectivity/communication-model.md'
+  - Security:
+    - 'security/introduction.md'
+    - 'security/trust-model.md'
+    - 'security/signatures.md'
   - 'sync.md'
   - 'storage.md'
   - 'forwarding.md'
