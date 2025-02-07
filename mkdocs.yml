@@ -27,16 +27,15 @@ nav:
     - 'connectivity/packet-format.md'
     - 'connectivity/building-networks.md'
     - 'connectivity/communication-model.md'
+    - 'connectivity/forwarding.md'
+    - 'connectivity/routing.md'
+    - 'connectivity/testbed.md'
   - Security:
     - 'security/introduction.md'
     - 'security/trust-model.md'
     - 'security/signatures.md'
   - 'sync.md'
   - 'storage.md'
-  - 'forwarding.md'
-  - 'routing.md'
-  - 'testbed.md'
-  - 'debugging.md'
 
 markdown_extensions:
   - admonition

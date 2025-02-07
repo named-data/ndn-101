@@ -1,3 +1,3 @@
-# Sync Transport
+# Synchronization
 
 !!! warning "This page is under construction."
