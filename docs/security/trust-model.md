@@ -37,8 +37,22 @@ The exact name hierarchy to use may depend on application semantics, as describe
 /edu/ucla/remap/faculty/jeff
 
 # A separate namespace identifying individual smart devices.
-/edu/ucla/cs-building/floor-3/room-372/door
-/edu/ucla/cs-building/floor-5/room-514/light/2
+/edu/ucla/facilities/eng6/floor-3/room-372/door
+/edu/ucla/facilities/eng6/floor-5/room-514/light/2
+```
+
+``` mermaid
+flowchart TD
+    ucla --> cs
+    ucla --> remap
+
+    cs --> f1[faculty] --> lixia{{lixia}}
+    cs --> students --> varun{{varun}}
+    remap --> f2[faculty] --> jeff{{jeff}}
+
+    ucla --> facilities --> eng6
+    eng6 --> floor-3 --> room-372 --> door{{door}}
+    eng6 --> floor-5 --> room-514 --> light --> two{{2}}
 ```
 
 Entities in NDN authenticate each other using heirarchical certificates. Each entity is provisioned with a private key that is certified by another entity higher up in the hierarchy. On receiving data from another entity, the consumer can authenticate the other entity using this certificate.
@@ -86,11 +100,11 @@ flowchart TD
     /edu/ucla -->|signs| /edu/ucla/cs
     /edu/ucla -->|signs| /edu/ucla/remap
 
-    /edu/ucla/cs -->|signs| /edu/ucla/cs/students/varun
-    /edu/ucla/cs -->|signs| /edu/ucla/cs/faculty/lixia -->|signs| lws([/edu/ucla/cs/faculty/lixia/website])
-    /edu/ucla/remap -->|signs| /edu/ucla/remap/faculty/jeff
+    /edu/ucla/cs -->|signs| varun{{/edu/ucla/cs/students/varun}}
+    /edu/ucla/cs -->|signs| lixia{{/edu/ucla/cs/faculty/lixia}} -->|signs| lws([/edu/ucla/cs/faculty/lixia/website])
+    /edu/ucla/remap -->|signs| jeff{{/edu/ucla/remap/faculty/jeff}}
 
-    lws -. fetched by .-> /edu/ucla/remap/faculty/jeff
+    lws -. fetched by .-> jeff
 ```
 
 !!! tip "The WebPKI trust model"
