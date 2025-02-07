@@ -1,8 +1,12 @@
-# Research Testbed
+---
+title: Research Testbed
+---
+
+# NDN Research Testbed
 
 !!! warning "This page is under construction."
 
-The [NDN research testbed](https://named-data.net/ndn-testbed/) is a shared resource created for research purposes, that include software routers at several participating institutions, application host nodes, and other devices. The testbed is used for research and development of NDN software, and for experiments that require a shared NDN infrastructure. It is not intended for production use.
+The [Global NDN research testbed](https://named-data.net/ndn-testbed/) is a shared resource created for research purposes, that include software routers at several participating institutions, application host nodes, and other devices. The testbed is used for research and development of NDN software, and for experiments that require a shared NDN infrastructure. It is not intended for production use.
 
 !!! tip "Connecting NFD to the Testbed"
     To connect your local NFD to the testbed, use the `ndn-autoconfig` tool. This tool uses the Find-Closest-Hub (FCH) service to find the closest testbed node, and creates a face from your local NFD to that node. It also configures the local NFD to use the testbed as a default route for Interests that do not match any local routes.

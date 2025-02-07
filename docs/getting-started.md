@@ -1,4 +1,8 @@
-# Getting Started
+---
+title: Getting Started
+---
+
+# Getting Started with NDN
 
 This page will guide you through the process of installing the basic tools needed to start using and developing NDN applications.
 

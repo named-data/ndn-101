@@ -1,6 +1,8 @@
-# Introduction
+---
+title: Introduction
+---
 
-!!! warning "This website is under construction."
+# Introduction to Named Data Networking
 
 Named Data Networking (NDN)[@sigcomm2014ndn] is a future Internet architecture inspired by years of research into network usage and a growing awareness of unsolved problems in the contemporary protocols. Many of these problems arise due to the fundamental mismatch between the data-centric usage of the Internet and the host-centric nature of IP. NDN is designed as a data-centric replacement of the TCP/IP architecture, thus overcoming this mismatch by replacing the network layer itself. The NDN project is now a collaborative effort of a large community of researchers at more than a dozen institutions.
 

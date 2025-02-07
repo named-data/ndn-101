@@ -1,4 +1,8 @@
-# Forwarding Plane
+---
+title: Forwarding Plane
+---
+
+# NDN Forwarding Plane
 
 NDN uses a stateful forwarding plane[@cc2013stateful] that maintains several tables at forwarders. This is in contrast to the stateless forwarding plane of IP, which does not maintain any per-packet state. The stateful forwarding plane of NDN enables Data multicast and caching, along with other features such as privacy, loop detection, network-layer congestion control[@icn2019congestion] and DoS protection[@icccn2013ddos].
 
