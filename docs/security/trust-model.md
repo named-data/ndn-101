@@ -4,7 +4,7 @@ title: Trust Model
 
 # Data-centric Trust in NDN
 
-This article provides a brief overview of the data-centric trust model of NDN.
+This article provides a brief overview of the data-centric trust model of NDN[@ieeecomm2018security @metacomswo].
 
 The key feature of NDN that enables systematic and provable data centric security is the semantic name that identifies each object. NDN applications establish trust relations directly based on data names, which eliminates the need for manually configured roles and ACLs.
 
@@ -123,7 +123,7 @@ flowchart TD
 
 Once every communicating entity has an identity, consumers can know **who** they are talking to. However, they still need to know **what** the other entity can say. This information is systematically encoded in a *trust policy* defined by the application.
 
-In NDN, a **trust schema** defines an application or organization's trust policy using a trust language such as [Light Versec](https://python-ndn.readthedocs.io/en/latest/src/lvs/lvs.html). One or more trust languages are supported by all major NDN implementations.
+In NDN, a **trust schema** defines an application or organization's trust policy using a trust language such as [Light Versec](https://python-ndn.readthedocs.io/en/latest/src/lvs/lvs.html)[@icn23lightversec]. One or more trust languages are supported by all major NDN implementations.
 
 The trust schema defines which producer (by name) is allowed to generate what data. Typically, the trust schema is defined hierarchically, utilizing the name semantics of the application.
 

@@ -10,7 +10,6 @@
 	Volume = {44},
 	Year = {2014},
 	url = {http://doi.acm.org/10.1145/2656877.2656887},
-	doi = {10.1145/2656877.2656887},
 }
 
 @inproceedings{icn2019congestion,
@@ -38,7 +37,7 @@
   volume={56},
   number={11},
   pages={62-68},
-  doi={10.1109/MCOM.2018.1701147}
+  url={https://doi.org/10.1109/MCOM.2018.1701147}
 }
 
 @INPROCEEDINGS{icccn2013ddos,
@@ -142,8 +141,7 @@
 	pages = {779-791},
 	year = {2013},
 	issn = {0140-3664},
-	doi = {https://doi.org/10.1016/j.comcom.2013.01.005},
-	url = {https://www.sciencedirect.com/science/article/pii/S0140366413000236},
+	url = {https://doi.org/10.1016/j.comcom.2013.01.005},
 	author = {Cheng Yi and Alexander Afanasyev and Ilya Moiseenko and Lan Wang and Beichuan Zhang and Lixia Zhang},
 	keywords = {NDN, Forwarding plane, Adaptive forwarding},
 	abstract = {In Named Data Networking (NDN), packets carry data names instead of source and destination addresses. This paradigm shift leads to a new network forwarding plane: data consumers send Interest packets to request desired data, routers forward Interest packets and maintain the state of all pending Interests, which is then used to guide Data packets back to the consumers. Maintaining the pending Interest state, together with the two-way Interest and Data exchange, enables NDN routers’ forwarding process to measure performance of different paths, quickly detect failures and retry alternative paths. In this paper we describe an initial design of NDN’s forwarding plane and evaluate its data delivery performance under adverse conditions. Our results show that this stateful forwarding plane can successfully circumvent prefix hijackers, avoid failed links, and utilize multiple paths to mitigate congestion. We also compare NDN’s performance with that of IP-based solutions to highlight the advantages of a stateful forwarding plane.}
@@ -158,4 +156,36 @@
   number={},
   pages={1-10},
   doi={10.1109/IWQoS.2016.7590394}
+}
+
+@inproceedings{icn23lightversec,
+ author = {Yu, Tianyuan and Ma, Xinyu and Xie, Hongcheng and Kocao\u{g}ullar, Yekta and Zhang, Lixia},
+ title = {A New API in Support of NDN Trust Schema},
+ year = {2023},
+ isbn = {9798400704031},
+ publisher = {Association for Computing Machinery},
+ address = {New York, NY, USA},
+ url = {https://doi.org/10.1145/3623565.3623709},
+ doi = {10.1145/3623565.3623709},
+ abstract = {The decade-long experiences from developing applications over Named Data Networking (NDN) have taught us the importance of well-designed libraries that offer support to application developers to support data security. NDN trust schema provides a critical component in the NDN security support, however its implementation and support only started receiving significant attention in recent years. This paper first provides a summary of the existing API support for trust schema, then takes a step forward by developing a new trust schema API, named Envelope. Envelope addresses the application requirements by offering comprehensive trust schema functionalities, an easy-to-write schema language, and an extensible design. To demonstrate the usefulness of Envelope, we develop a blog application which uses Envelope to secure its data. Our results show that Envelope provides effective trust schema support for applications with acceptable overhead.},
+ booktitle = {Proceedings of the 10th ACM Conference on Information-Centric Networking},
+ pages = {46–54},
+ numpages = {9},
+ keywords = {named data networking (NDN), trust schema, API, software engineering},
+ location = {Reykjavik, Iceland},
+ series = {ACM ICN '23}
+}
+
+@INPROCEEDINGS {metacomswo,
+ author = {Yu, Tianyuan and Ma, Xinyu and Patil, Varun and Kocaogullar, Yekta and Zhang, Yulong and Burke, Jeff and Kutscher, Dirk and Zhang, Lixia},
+ booktitle = {2024 IEEE International Conference on Metaverse Computing, Networking, and Applications (MetaCom)},
+ title = {Secure Web Objects: Building Blocks for Metaverse Interoperability and Decentralization},
+ year = {2024},
+ volume = {},
+ ISSN = {},
+ pages = {25-33},
+ doi = {10.1109/MetaCom62920.2024.00019},
+ url = {https://doi.ieeecomputersociety.org/10.1109/MetaCom62920.2024.00019},
+ publisher = {IEEE Computer Society},
+ address = {Los Alamitos, CA, USA},
 }

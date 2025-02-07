@@ -11,6 +11,7 @@ theme:
   features:
     - content.tabs.link
     - navigation.footer
+    - navigation.expand
     - content.code.copy
 
 plugins:
