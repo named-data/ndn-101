@@ -27,7 +27,6 @@ The example below shows how to manually create an NDN face over a UDP tunnel bet
     ndnd fw face-create remote=udp://router.example.net
     ```
 
-
 Once a face is created, you can use the same tool to add routes between the two forwarders and start transferring data.
 
 === "ndn-cxx"
@@ -55,7 +54,7 @@ You can now start an NDN ping server on the example forwarder and the prefix wou
     ndnpingserver /example/server
 
     # Run on the first node
-    ndn ping /example/server
+    ndnping /example/server
     ```
 
 === "NDNd"
