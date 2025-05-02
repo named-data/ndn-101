@@ -48,18 +48,18 @@ You are now ready to start developing NDN applications!
 
 The [ndn-tools](https://github.com/named-data/ndn-tools) package is highly recommended and contains several tools for developing and debugging NDN applications. The [NDNd](https://github.com/named-data/ndnd) package also offers many of these tools with prebuilt binaries available.
 
-  * [peek](https://github.com/named-data/ndn-tools/tree/master/tools/peek): transmit a single Interest/Data packet between a consumer and a producer.
-  * [chunks](https://github.com/named-data/ndn-tools/tree/master/tools/chunks): segmented file transfer between a consumer and a producer.
-  * [ping](https://github.com/named-data/ndn-tools/tree/master/tools/ping): test reachability between two NDN nodes
-  * [dump](https://github.com/named-data/ndn-tools/tree/master/tools/dump): capture and analyze live traffic on an NDN network
-  * [dissect](https://github.com/named-data/ndn-tools/tree/master/tools/dissect): inspect the TLV structure of an NDN packet
-  * [dissect-wireshark](https://github.com/named-data/ndn-tools/tree/master/tools/dissect-wireshark): Wireshark extension to inspect the TLV structure of NDN packets
+  * [peek](https://github.com/named-data/ndn-tools/blob/master/tools/peek/README.md): transmit a single Interest/Data packet between a consumer and a producer.
+  * [get](https://github.com/named-data/ndn-tools/blob/master/tools/get/README.md) and [serve](https://github.com/named-data/ndn-tools/blob/master/tools/serve/README.md): segmented file transfer between a consumer and a producer.
+  * [ping](https://github.com/named-data/ndn-tools/blob/master/tools/ping/README.md): test reachability between two NDN nodes
+  * [dump](https://github.com/named-data/ndn-tools/blob/master/tools/dump/README.md): capture and analyze live traffic on an NDN network
+  * [dissect](https://github.com/named-data/ndn-tools/blob/master/tools/dissect/README.md): inspect the TLV structure of an NDN packet
+  * [dissect-wireshark](https://github.com/named-data/ndn-tools/blob/master/tools/dissect-wireshark/README.md): Wireshark extension to inspect the TLV structure of NDN packets
 
 !!! tip "Ping test"
 
     You can run a simple test for your local NDN forwarder by using the ndn-tools or NDNd packages to start a ping server and client on the same machine. These will then communicate by connecting to the forwarder over a unix socket.
 
-    === "ndn-cxx"
+    === "ndn-tools"
 
         ```bash
         ndnpingserver /my/nfd/test &
