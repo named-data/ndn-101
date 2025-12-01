@@ -1,0 +1,1194 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../communication-model/">
+      
+      
+        <link rel="next" href="../routing/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/ndn.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Forwarding Plane - NDN 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ndn-forwarding-plane" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NDN 101" class="md-header__button md-logo" aria-label="NDN 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4v2h1a1 1 0 0 1 1 1h7v2h-7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1H2v-2h7a1 1 0 0 1 1-1h1v-2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NDN 101
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Forwarding Plane
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/named-data/ndn-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NDN 101" class="md-nav__button md-logo" aria-label="NDN 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4v2h1a1 1 0 0 1 1 1h7v2h-7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1H2v-2h7a1 1 0 0 1 1-1h1v-2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+
+    </a>
+    NDN 101
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/named-data/ndn-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connectivity
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Connectivity
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packet-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packet Format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../building-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../communication-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Communication Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forwarding Plane
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forwarding Plane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#forwarding-information-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forwarding Information Base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategy-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategy Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pending-interest-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pending Interest Table
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pending Interest Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-multicast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Multicast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumer-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumer Privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Store
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testbed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Testbed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/trust-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/signatures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signatures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Synchronization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#forwarding-information-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Forwarding Information Base
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strategy-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strategy Table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pending-interest-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pending Interest Table
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pending Interest Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-multicast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Multicast
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#consumer-privacy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Consumer Privacy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Loop Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#content-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Content Store
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="ndn-forwarding-plane">NDN Forwarding Plane</h1>
+<p>NDN uses a stateful forwarding plane<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> that maintains several tables at forwarders. This is in contrast to the stateless forwarding plane of IP, which does not maintain any per-packet state. The stateful forwarding plane of NDN enables Data multicast and caching, along with other features such as privacy, loop detection, network-layer congestion control<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> and DoS protection<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
+<p>Each instance of NFD in an NDN network maintains several tables. Some of these tables store per-packet state, thus making the forwarding plane stateful. The most important of these tables are described briefly in the following sections.</p>
+<div class="admonition info">
+<p class="admonition-title">Further Reading</p>
+<p>If you are interested in the implementation details of NFD, please refer to the <a href="https://named-data.net/publications/techreports/nfd-developer-guide/">NFD Developer Guide</a>.</p>
+</div>
+<h2 id="forwarding-information-base">Forwarding Information Base</h2>
+<p>The FIB is a forwarding table similar to the one found in IP routers, which maps
+name prefixes to outgoing faces. It is used by NFD to forward Interest packets.
+Each entry in the FIB contains the following information.</p>
+<ul>
+<li>A name prefix.</li>
+<li>A set of <strong>next hops</strong> (outgoing faces).</li>
+<li>The cost of each next hop face.</li>
+</ul>
+<p>When NFD receives an Interest which must be forwarded, it looks up
+the FIB for the longest matching prefix. If a matching entry is found, the Interest
+may be forwarded to one or more faces specified in the entry. The exact decision of
+which face(s) to forward the Interest on is made by the <strong>strategy</strong> matching the
+prefix, as described in the next section.</p>
+<h2 id="strategy-table">Strategy Table</h2>
+<p>The strategy table is used by NFD to decide which strategy to use for forwarding
+a given Interest. Each entry in the strategy table contains the following information.</p>
+<ul>
+<li>A name prefix.</li>
+<li>The name of the strategy to use for forwarding Interests matching the prefix.</li>
+</ul>
+<p>When NFD receives an Interest which must be forwarded, it looks up
+the strategy table for the longest matching prefix. The matching strategy is then
+used to decide which face(s) to forward the Interest on.</p>
+<p>Some examples of strategies are,</p>
+<ul>
+<li><strong>Best route</strong>: Use the next hop with the lowest cost.</li>
+<li><strong>Multicast</strong>: Forward the Interest to all next hops.</li>
+<li><strong>ASF</strong>: Use the Adaptive Smoothed RTT-based Forwarding (ASF) algorithm<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup>.</li>
+</ul>
+<h2 id="pending-interest-table">Pending Interest Table</h2>
+<p>The PIT is the most important table in the forwarding plane, and it provides the
+basic support for the <em>pull</em> model of communication in NDN.</p>
+<p>When NFD receives an Interest, it stores a <strong>PIT entry</strong> in this table.
+Each PIT entry contains the following information.</p>
+<ul>
+<li>The name of the Interest along with any selectors.</li>
+<li>The incoming face on which the Interest was received (<strong>in-record</strong>).</li>
+<li>The outgoing face(s) on which the Interest was forwarded (<strong>out-record</strong>).</li>
+<li>The time at which the Interest will expire (lifetime).</li>
+</ul>
+<p>On receiving a Data packet, NFD performs the following steps.</p>
+<ul>
+<li>Looks up the PIT for an entry matching the Data packet.</li>
+<li>If such an entry is found, the Data packet is forwarded on the incoming face
+    of the PIT entry, and the PIT entry is removed from the table.</li>
+<li>If no matching PIT entry is found, the Data packet is dropped.</li>
+</ul>
+<p>The PIT entry is also dropped if the Interest times out before a matching Data packet is received.</p>
+<div class="admonition tip">
+<p class="admonition-title">One-Interest One-Data</p>
+<p>A fundamental principle of NDN is that one outgoing Interest can bring back at most one Data packet.
+This is enforced by the PIT, since the PIT entry is removed from the table as soon as a matching
+Data packet is received and forwarded to the incoming face.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Breadcrumb Trail</p>
+<p>In an NDN network containing multiple forwarders, PIT entries for an Interest serve as a breadcrumb trail
+that the Data packet follows back to the consumer. As a result, no source address is required in the
+Interest packet for sending the Data packet back to the consumer.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Implementation of PIT</p>
+<p>For efficiency, forwarders may implement the PIT using tree-based data structures
+or hash tables. The entry expiration is typically implemented using priority queues.</p>
+</div>
+<h3 id="data-multicast">Data Multicast</h3>
+<p>The per-packet statefulness of the PIT directly enables Data multicast by allowing a single
+Data packet to be forwarded to multiple consumers that have expressed an Interest
+in the same data.</p>
+<p>When NFD receives an Interest, it first looks up the PIT for an entry matching the Interest.
+If such an entry is found, the Interest is aggregated with the existing entry, by appending
+an in-record to the entry for the incoming face of the new Interest. The Interest is then not
+forwarded further.</p>
+<p>When a matching Data packet is received, it is forwarded on all the incoming faces of
+the PIT entry. As a result, multiple Interests are satisfied with a single Data packet,
+thus realizing Data multicast.</p>
+<div class="admonition tip">
+<p class="admonition-title">Multicast and Interest Selectors</p>
+<p>Interests can generally be aggregated only if they have the same name and selectors.
+For instance, two Interests having the same name but different values for the <code>MustBeFresh</code>
+selector cannot be aggregated, since they are potentially requesting different Data packets.</p>
+</div>
+<h3 id="consumer-privacy">Consumer Privacy</h3>
+<p>Since the PIT stores the incoming face of each Interest, the outgoing Interest does not
+need to contain any information about the incoming face. This enables consumer privacy in
+NDN, by ensuring that Interest packets cannot be used to identify the original sender.</p>
+<h3 id="loop-detection">Loop Detection</h3>
+<p>The PIT also lets NFD detect and prevent looping Interests. Each Interest in NDN carries a
+randomly generated nonce, which is stored in the PIT entry along with the Interest name.
+When NFD receives an Interest, it first looks up the PIT for an entry matching the Interest.
+If such an entry is found including a matching nonce, then the incoming Interest is dropped.</p>
+<div class="admonition tip">
+<p class="admonition-title">Longer Loops</p>
+<p>While the PIT prevents some types of looping Interests, it fails to detect longer loops,
+since an Interest may be satisfied by a Data packet before it loops back to the same
+forwarder. To detect such looping Interests, NFD uses a separate table called the
+<strong>Dead Nonce List</strong>, which stores nonces of recently satisfied Interests.</p>
+</div>
+<h2 id="content-store">Content Store</h2>
+<p>The Content Store is a cache of Data packets, which is used by NFD to satisfy Interests.
+When NFD receives an Interest, it first looks up the Content Store for a matching Data packet
+before looking up the FIB and Strategy Tables. If a matching Data packet is found, it is
+directly used to satisfy the Interest, and the Interest is not forwarded further.</p>
+<p>The Content Store is a key component of NDN, since it enables Data caching at the network layer.
+As a result, NDN supports both synchronous and asynchronous multicast of Data packets.</p>
+<div class="admonition tip">
+<p class="admonition-title">Data Freshness</p>
+<p>NDN Data packets carry a <code>FreshnessPeriod</code>, which specifies the time in milliseconds for
+which the data is fresh. A Data packet cached earlier than its freshness period is considered
+"non-fresh", and cannot be used to satisfy Interests with the <code>MustBeFresh</code> selector.</p>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Yi, C. et al. 2013. <a href="https://doi.org/10.1016/j.comcom.2013.01.005">A case for stateful forwarding plane</a>. <em>Computer Communications</em>. 36, 7 (2013), 779–791.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Song, S. and Zhang, L. 2022. <a href="https://doi.org/10.1145/3517212.3558088">Effective NDN congestion control based on queue size feedback</a>. <em>Proceedings of the 9th ACM conference on information-centric networking</em> (New York, NY, USA, 2022), 11–21.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Gasti, P. et al. 2013. <a href="https://doi.org/10.1109/ICCCN.2013.6614127">DoS and DDoS in named data networking</a>. <em>2013 22nd international conference on computer communication and networks (ICCCN)</em> (2013), 1–7.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Lehman, V. et al. 2016. <a href="https://doi.org/10.1109/IWQoS.2016.7590394">An experimental investigation of hyperbolic routing with a smart forwarding plane in NDN</a>. <em>2016 IEEE/ACM 24th international symposium on quality of service (IWQoS)</em> (2016), 1–10.&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../communication-model/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Communication Model">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Communication Model
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../routing/" class="md-footer__link md-footer__link--next" aria-label="Next: Routing">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Routing
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.footer", "navigation.expand", "content.code.copy"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/iframe-message.js"></script>
+      
+    
+  </body>
+</html>

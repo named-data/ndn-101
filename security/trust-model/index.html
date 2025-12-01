@@ -1,0 +1,1132 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../introduction/">
+      
+      
+        <link rel="next" href="../signatures/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../img/ndn.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Trust Model - NDN 101</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="deep-orange" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-centric-trust-in-ndn" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NDN 101" class="md-header__button md-logo" aria-label="NDN 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4v2h1a1 1 0 0 1 1 1h7v2h-7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1H2v-2h7a1 1 0 0 1 1-1h1v-2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NDN 101
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Trust Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/named-data/ndn-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NDN 101" class="md-nav__button md-logo" aria-label="NDN 101" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-4v2h1a1 1 0 0 1 1 1h7v2h-7a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1H2v-2h7a1 1 0 0 1 1-1h1v-2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>
+
+    </a>
+    NDN 101
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/named-data/ndn-101" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connectivity
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Connectivity
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connectivity/packet-format/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packet Format
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connectivity/building-networks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Building Networks
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connectivity/communication-model/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Communication Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connectivity/forwarding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Forwarding Plane
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connectivity/routing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Routing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../connectivity/testbed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research Testbed
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Model
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Trust Model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trust-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trust Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../signatures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signatures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sync/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Synchronization
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Identity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trust-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trust Policy
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="data-centric-trust-in-ndn">Data-centric Trust in NDN</h1>
+<p>This article provides a brief overview of the data-centric trust model of NDN<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup><sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>.</p>
+<p>The key feature of NDN that enables systematic and provable data centric security is the semantic name that identifies each object. NDN applications establish trust relations directly based on data names, which eliminates the need for manually configured roles and ACLs.</p>
+<p>The data-centric trust model of NDN is based two components. When communicating with someone, one needs to know,</p>
+<ol>
+<li><strong>Identity</strong>: Who am I talking to?</li>
+<li><strong>Policy</strong>: What are they allowed to say?</li>
+</ol>
+<p>We describe these components in detail and explain the NDN trust model with an example.</p>
+<h2 id="identity">Identity</h2>
+<p>To enable secure communication in any network,</p>
+<ol>
+<li>Each entity must be uniquely identifiable.</li>
+<li>All communicating entities should be able to authenticate each other.</li>
+</ol>
+<p>In the NDN trust model, each entity is identified with a unique name. The key component of the data-centric trust model is that this name describes semantics about the entity. The structuring of NDN names can be considered to be similar to, and optionally be based on the existing DNS name hierarchy.</p>
+<p>An example of a semantic name hierarchy partially based on existing DNS names is shown below.
+The exact name hierarchy to use may depend on application semantics, as described in later sections.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Structured NDN identity name for an organization.</span>
+/edu/ucla
+
+<span class="c1"># A nested sub-namespace inside UCLA to represent a &quot;department&quot;.</span>
+<span class="c1"># In this case, we encode the organizational semantics into the identity.</span>
+/edu/ucla/cs
+/edu/ucla/remap
+
+<span class="c1"># A sub-namespace inside a department identifying an individual person.</span>
+/edu/ucla/cs/faculty/lixia
+/edu/ucla/cs/students/varun
+/edu/ucla/remap/faculty/jeff
+
+<span class="c1"># A separate namespace identifying individual smart devices.</span>
+/edu/ucla/facilities/eng6/floor-3/room-372/door
+/edu/ucla/facilities/eng6/floor-5/room-514/door
+/edu/ucla/facilities/eng6/floor-5/room-514/light/2
+</code></pre></div>
+<pre class="mermaid"><code>flowchart TD
+    ucla --&gt; cs
+    ucla --&gt; remap
+
+    cs --&gt; f1[faculty] --&gt; lixia{{lixia}}
+    cs --&gt; students --&gt; varun{{varun}}
+    remap --&gt; f2[faculty] --&gt; jeff{{jeff}}
+
+    ucla --&gt; facilities --&gt; eng6
+    eng6 --&gt; floor-3 --&gt; room-372 --&gt; door{{door}}
+    eng6 --&gt; floor-5 --&gt; room-514 --&gt; door2{{door}}
+    room-514 --&gt; light --&gt; two{{2}}</code></pre>
+<p>Entities in NDN authenticate each other using heirarchical certificates. Each entity is provisioned with a private key that is certified by another entity higher up in the hierarchy. On receiving data from another entity, the consumer can authenticate the other entity using this certificate.</p>
+<p>Each organization and application gains full control over their trust model by having a local trust anchor and delegating authority to issue certificates. The example below shows how the certificates hierarchy may be established in the UCLA organization.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># In this example, each line represents a certificate issued to an</span>
+<span class="c1"># entity by another entity. The notation used is `identity &lt;= issuer`</span>
+
+<span class="c1"># The trust anchor key is the root of all trust.</span>
+<span class="c1"># This certificate is self-signed and must be well-known to all entities.</span>
+/edu/ucla<span class="w"> </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla
+
+<span class="c1"># The root key is used to certify all departments.</span>
+/edu/ucla/cs<span class="w">     </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla
+/edu/ucla/remap<span class="w">  </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla
+
+<span class="c1"># Departments in turn certify all staff and students.</span>
+/edu/ucla/cs/faculty/lixia<span class="w">    </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla/cs
+/edu/ucla/cs/students/varun<span class="w">   </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla/cs
+/edu/ucla/remap/faculty/jeff<span class="w">  </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla/remap
+
+<span class="c1"># Departments also certify all devices that are owned by them.</span>
+/edu/ucla/facilities/eng6/floor-3/room-372/door<span class="w">     </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla/cs
+/edu/ucla/facilities/eng6/floor-3/room-514/door<span class="w">     </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla/cs
+/edu/ucla/facilities/eng6/floor-5/room-514/light/2<span class="w">  </span>&lt;<span class="o">=</span><span class="w"> </span>/edu/ucla/cs
+</code></pre></div>
+<p>Each NDN certificate is NDN data itself, and identifies signer of the certificate using a <code>KeyLocator</code> field.
+As a result, consumers can directly fetch the chain of certificates needed to verify a given data till they reach
+a root of trust.</p>
+<p>In the above example, if <code>jeff</code> receives a data object <code>website</code> from <code>lixia</code>,</p>
+<ol>
+<li><code>lixia</code> signs the data with the <code>/edu/ucla/cs/faculty/lixia</code> key, received by <code>jeff</code>.</li>
+<li><code>jeff</code> fetches the <code>/edu/ucla/cs/faculty/lixia &lt;= /edu/ucla/cs</code> certificate using the <code>KeyLocator</code> in the data.</li>
+<li><code>jeff</code> verifies the signature on the data with the public key in the certificate.</li>
+<li><code>jeff</code> fetches the <code>/edu/ucla/cs &lt;= /edu/ucla</code> certificate using the <code>KeyLocator</code> in the certificate.</li>
+<li><code>jeff</code> verifies the signature on the first certificate.</li>
+<li><code>jeff</code> verifies the second certificate, which is signed by a known trust anchor.</li>
+<li>The chain of verification is now complete, and <code>jeff</code> has successfully authenticated that <code>lixia</code> originally produced the data.</li>
+</ol>
+<pre class="mermaid"><code>flowchart TD
+    /edu/ucla --&gt;|signs| /edu/ucla/cs
+    /edu/ucla --&gt;|signs| /edu/ucla/remap
+
+    /edu/ucla/cs --&gt;|signs| varun{{/edu/ucla/cs/students/varun}}
+    /edu/ucla/cs --&gt;|signs| lixia{{/edu/ucla/cs/faculty/lixia}} --&gt;|signs| lws([/edu/ucla/cs/faculty/lixia/website])
+    /edu/ucla/remap --&gt;|signs| jeff{{/edu/ucla/remap/faculty/jeff}}
+
+    lws -. fetched by .-&gt; jeff</code></pre>
+<div class="admonition tip">
+<p class="admonition-title">Identity in WebPKI</p>
+<p>In the traditional WebPKI trust model, the unique identity is typically provided by the DNS system, and authentication is provided by one or more "trusted" certificate authorities. This means, however, that all trust between communicating entities depends on the implicit trust they have in these certificate authorities, typically by virtue of having certificates pre-installed in the operating system.</p>
+</div>
+<h2 id="trust-policy">Trust Policy</h2>
+<p>Once every communicating entity has an identity, consumers can know <strong>who</strong> they are talking to. However, they still need to know <strong>what</strong> the other entity can say. This information is systematically encoded in a <em>trust policy</em> defined by the application.</p>
+<p>In NDN, a <strong>trust schema</strong> defines an application or organization's trust policy using a trust language such as <a href="https://python-ndn.readthedocs.io/en/latest/src/lvs/lvs.html">Light Versec</a><sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>. One or more trust languages are supported by all major NDN implementations.</p>
+<p>The trust schema defines which producer (by name) is allowed to generate what data. Typically, the trust schema is defined hierarchically, utilizing the name semantics of the application.</p>
+<p>To illustrate the usage of a name-based trust policy, we utilize the same UCLA example described above. Let us assume that the following policy must be enforced by the organization.</p>
+<ol>
+<li>All CS faculty can open all doors in the Engineering 6 building.</li>
+<li>Everyone in the CS department can turn on lights in Engineering 6.</li>
+<li>All faculty in UCLA can open doors on Floor 5 in Engineering 6.</li>
+</ol>
+<p>Such a trust policy can be written as a simple NDN trust schema as described below.
+Note that the pseudo-sytax is very similar to Light Versec, but is described in a verbose
+format for ease of understanding.</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// Each line below is a policy &quot;rule&quot; - a definition of who can say what.</span>
+<span class="c1">// The pseudo syntax is similar to Light Versec and describes:</span>
+<span class="c1">//</span>
+<span class="c1">//   #rule_name: /what/data/is/this &lt;= /who/can/say/this</span>
+<span class="c1">//</span>
+<span class="c1">// We must first define the certification hierarchy in the application.</span>
+<span class="c1">// We start by definining the root of trust of the organization.</span>
+<span class="err">#</span><span class="nx">ucla</span><span class="p">:</span><span class="w"> </span><span class="o">/</span><span class="s">&quot;edu&quot;</span><span class="o">/</span><span class="s">&quot;ucla&quot;</span>
+
+<span class="c1">// Rules may now refer to previously defined rules.</span>
+<span class="c1">//</span>
+<span class="c1">// Here, we define the name structure of a department, and declare that it</span>
+<span class="c1">// must be signed by the root of trust. The #KEY component refers to NDN&#39;s</span>
+<span class="c1">// pre-defined certificate naming convention.</span>
+<span class="c1">//</span>
+<span class="c1">// Since `dept` is not in quotes, it refers to a wildcard name component.</span>
+<span class="c1">// Thus, UCLA can now sign new departments with the root key without changing</span>
+<span class="c1">// the organization-wide trust policy.</span>
+<span class="err">#</span><span class="nx">department</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">ucla</span><span class="o">/</span><span class="nx">dept</span><span class="o">/</span><span class="err">#</span><span class="nx">KEY</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="err">#</span><span class="nx">ucla</span><span class="o">/</span><span class="err">#</span><span class="nx">KEY</span>
+
+<span class="c1">// The next rule defines name structure for students and faculty, and declares</span>
+<span class="c1">// that these must be signed by the department they belong to.</span>
+<span class="c1">//</span>
+<span class="c1">// In this rule, notably, since #department is used in both the rule and the</span>
+<span class="c1">// signer definition, the wildcard components must match during verfication.</span>
+<span class="c1">// This means that the `/edu/ucla/remap` key cannot sign the certificate</span>
+<span class="c1">// for /edu/ucla/cs/students/varun</span>
+<span class="c1">//</span>
+<span class="c1">// Note that this structure is not rigid. For example, additional rules may</span>
+<span class="c1">// define some rule exceptions, such as where certain faculty certificates</span>
+<span class="c1">// may be signed by other departments.</span>
+<span class="err">#</span><span class="nx">students</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">department</span><span class="o">/</span><span class="s">&quot;students&quot;</span><span class="o">/</span><span class="nx">name</span><span class="o">/</span><span class="err">#</span><span class="nx">KEY</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="err">#</span><span class="nx">department</span>
+<span class="err">#</span><span class="nx">faculty</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">department</span><span class="o">/</span><span class="s">&quot;faculty&quot;</span><span class="o">/</span><span class="nx">name</span><span class="o">/</span><span class="err">#</span><span class="nx">KEY</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="err">#</span><span class="nx">department</span>
+
+<span class="c1">// Finally we define the naming structure for devices in UCLA facilities.</span>
+<span class="c1">// To allow one room to have multiple lights, we define an unnamed wildcard</span>
+<span class="c1">// component with `_`, which can match anything.</span>
+<span class="err">#</span><span class="nx">room</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">ucla</span><span class="o">/</span><span class="s">&quot;facilities&quot;</span><span class="o">/</span><span class="nx">building</span><span class="o">/</span><span class="nx">floor</span><span class="o">/</span><span class="nx">room</span>
+<span class="err">#</span><span class="nx">door</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">room</span><span class="o">/</span><span class="s">&quot;door&quot;</span>
+<span class="err">#</span><span class="nx">light</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">room</span><span class="o">/</span><span class="s">&quot;light&quot;</span><span class="o">/</span><span class="nx">_</span>
+
+<span class="c1">// We can now define our actual device-control trust policy.</span>
+<span class="c1">//</span>
+<span class="c1">// &quot;All CS faculty can open all doors in the Engineering 6 building.&quot;</span>
+<span class="c1">//</span>
+<span class="c1">// To define this policy, we restrict the `building` variable to a particular</span>
+<span class="c1">// value, and define the entities allowed to say the &quot;open&quot; command by</span>
+<span class="c1">// restricting the `dept` variable in the signers.</span>
+<span class="err">#</span><span class="nx">cs_faculty</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">faculty</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dept</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cs&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="err">#</span><span class="nx">policy1</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">door</span><span class="o">/</span><span class="s">&quot;open&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">building</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;eng6&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="err">#</span><span class="nx">cs_faculty</span>
+
+<span class="c1">// &quot;Everyone in the CS department can turn on lights in Engineering 6.&quot;</span>
+<span class="c1">//</span>
+<span class="c1">// We use two wildcards for the &quot;cs_all&quot; rule, the first to allow</span>
+<span class="c1">// any type of person (student or faculty), and the second to allow any</span>
+<span class="c1">// name. There are many different ways to write the same rule in a trust</span>
+<span class="c1">// language, and the rule below is only representative.</span>
+<span class="err">#</span><span class="nx">cs_all</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">department</span><span class="o">/</span><span class="nx">_</span><span class="o">/</span><span class="nx">_</span><span class="o">/</span><span class="err">#</span><span class="nx">KEY</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">dept</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;cs&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="err">#</span><span class="nx">policy2</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">light</span><span class="o">/</span><span class="s">&quot;on&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">building</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;eng6&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="err">#</span><span class="nx">cs_all</span>
+
+<span class="c1">// &quot;All faculty in UCLA can open doors on Floor 5 in Engineering 6.&quot;</span>
+<span class="c1">//</span>
+<span class="c1">// Once the naming structure is well-defined, additional complex rules</span>
+<span class="c1">// can be easily added using the trust schema rules syntax.</span>
+<span class="err">#</span><span class="nx">policy3</span><span class="p">:</span><span class="w"> </span><span class="err">#</span><span class="nx">door</span><span class="o">/</span><span class="s">&quot;open&quot;</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">building</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;eng6&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">floor</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;floor-5&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="err">#</span><span class="nx">faculty</span>
+</code></pre></div>
+<p>Once a trust policy is defined as a trust schema, NDN client libraries can automatically enforce the policy on all received data. For example, if the schema above is installed in all devices in UCLA, a door in Engineering 6 can automatically verify if the entity sending an "open" command is authorized to perform this action.</p>
+<p>Two important features of a schematized trust policy may be noted below.</p>
+<ol>
+<li>Additional certificates can now be issued without modifying the policy. For example, new students in the CS department can be issued a certificate with the correct naming structure, and they are automatically granted access to use lights in the E6 building. Schematizing the trust policy eliminates the need to maintain complicated ACLs.</li>
+<li>The trust policy establishes relations directly between users and the devices, without the requirement of a trusted identity provider. This eliminates the single point of failure, and the system continues to function even when disconnected from the public internet, e.g. in ad-hoc or air-gapped scenarios.</li>
+</ol>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Zhang, Z. et al. 2018. <a href="https://doi.org/10.1109/MCOM.2018.1701147">An overview of security support in named data networking</a>. <em>IEEE Communications Magazine</em>. 56, 11 (2018), 62–68.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Yu, T. et al. 2024. <a href="https://doi.org/10.1109/MetaCom62920.2024.00019">Secure web objects: Building blocks for metaverse interoperability and decentralization</a>. <em>2024 IEEE international conference on metaverse computing, networking, and applications (MetaCom)</em> (Los Alamitos, CA, USA, 2024), 25–33.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Yu, T. et al. 2023. <a href="https://doi.org/10.1145/3623565.3623709">A new API in support of NDN trust schema</a>. <em>Proceedings of the 10th ACM conference on information-centric networking</em> (New York, NY, USA, 2023), 46–54.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../introduction/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Introduction">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Introduction
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../signatures/" class="md-footer__link md-footer__link--next" aria-label="Next: Signatures">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Signatures
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.tabs.link", "navigation.footer", "navigation.expand", "content.code.copy"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/iframe-message.js"></script>
+      
+    
+  </body>
+</html>
