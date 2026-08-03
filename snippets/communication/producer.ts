@@ -7,7 +7,7 @@ import { toUtf8 } from '@ndn/util';
 // In this example, we connect to a remote NFD instance, running as
 // a part of the global NDN testbed.
 const uplink = await WsTransport.createFace({}, "wss://suns.cs.ucla.edu/ws/");
-console.log(`Connected to NFD at ${uplink.remoteAddress}`);
+console.log(`Connected to ${uplink}`);
 
 // Start one producer
 const myProducer = produce('/edu/ucla/cs/118/notes', async (interest) => {
