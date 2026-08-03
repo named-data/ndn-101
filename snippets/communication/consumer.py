@@ -1,5 +1,11 @@
-from ndn.app import NDNApp
+from ndn.appv2 import NDNApp, pass_all
 from ndn.encoding import Name
+from ndn.types import (
+    InterestCanceled,
+    InterestNack,
+    InterestTimeout,
+    ValidationFailure,
+)
 
 # Connect to the local forwarder over a Unix socket
 app = NDNApp()
@@ -7,13 +13,13 @@ app = NDNApp()
 
 async def main():
     try:
-        data_name, meta_info, content = await app.express_interest(
-            "/edu/ucla/cs/118/notes"
+        data_name, content, pkt_context = await app.express(
+            "/edu/ucla/cs/118/notes", validator=pass_all
         )
 
         # Received a Data packet
         print(f"Received Data Name: {Name.to_str(data_name)}")
-        print(meta_info)
+        print(pkt_context["meta_info"])
         print(bytes(content) if content else None)
 
     except InterestNack as e:
