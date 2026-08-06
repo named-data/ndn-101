@@ -2,7 +2,7 @@
 
 An introductory website on Named Data Networking (NDN).
 
-Link: [101.named-data.net](https://101.named-data.net/)
+View the live website at [101.named-data.net](https://101.named-data.net/).
 
 ## General Information
 
@@ -20,7 +20,7 @@ pipx install poetry
 uv tool install poetry
 ```
 
-After Poetry is installed, navigate to the project directory (i.e., ndn-101) and run the command below to install the required build dependencies:
+After Poetry is installed, navigate to the project directory (i.e., `ndn-101`) and run the command below to install the required build dependencies:
 
 ```shell
 poetry install
@@ -32,14 +32,10 @@ To start a live preview on your machine, you can run:
 poetry run mkdocs serve
 ```
 
-After running this command, the MkDocs development server should start on your local machine (default port number is 8000).
+After running this command, the MkDocs development server should start on your local machine (the default port number is 8000).
 
-To build static web pages, use this command:
+To build static web pages locally, use this command:
 
 ```shell
 poetry run mkdocs build
 ```
-
-## Contributing
-
-You can contribute to the NDN 101 website by submitting a pull request on GitHub.

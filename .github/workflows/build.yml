@@ -2,10 +2,12 @@ name: Build
 on:
   pull_request:
     paths-ignore:
+      - 'CONTRIBUTING.md'
       - 'README.md'
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  contents: read
 
 jobs:
   build:
