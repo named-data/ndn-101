@@ -6,7 +6,7 @@ import { consume } from '@ndn/endpoint';
 // In this example, we connect to a remote NFD instance, running as
 // a part of the global NDN testbed.
 const uplink = await WsTransport.createFace({}, "wss://suns.cs.ucla.edu/ws/");
-console.log(`Connected to NFD at ${uplink.remoteAddress}`);
+console.log(`Connected to ${uplink}`);
 
 // Create an Interest packet
 const interest = new Interest(`/ndn/edu/arizona/ping/NDNts/${Date.now()}`);

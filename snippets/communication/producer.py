@@ -1,20 +1,32 @@
-from typing import Optional
-from ndn.app import NDNApp
-from ndn.encoding import Name, InterestParam, BinaryStr, FormalName
+from ndn.appv2 import NDNApp, PktContext, ReplyFunc
+from ndn.encoding import BinaryStr, FormalName, Name
 
 # Connect to the local forwarder over a Unix socket
 app = NDNApp()
+keychain = app.default_keychain()
+
 
 # Register a prefix, and call on_interest when a matching Interest is received
-@app.route('/edu/ucla/cs/118/notes')
-def on_interest(name: FormalName, param: InterestParam, _app_param: Optional[BinaryStr]):
-    print(f'Received Interest packet for {Name.to_str(name)}')
+@app.route("/edu/ucla/cs/118/notes")
+def on_interest(
+    name: FormalName,
+    app_param: BinaryStr | None,
+    reply: ReplyFunc,
+    context: PktContext,
+):
+    print(f"Received Interest packet for {Name.to_str(name)}")
 
     # Create the content bytes for the Data packet
-    content = "Hello, NDN!".encode()
+    content = b"Hello, NDN!"
 
-    # Sign and send the Data packet back to the network
-    app.put_data(name, content=content, freshness_period=10000)
+    # Create and sign the Data packet
+    data = app.make_data(
+        name, content, keychain.get_signer({}), freshness_period=10000
+    )
 
-if __name__ == '__main__':
+    # Send the Data packet back to the network
+    reply(data)
+
+
+if __name__ == "__main__":
     app.run_forever()
